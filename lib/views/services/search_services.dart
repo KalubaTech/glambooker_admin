@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:glambooker/customs/kalutext.dart';
-import 'package:glambooker/utils/colors.dart';
+import 'package:glambooker_admin/customs/kalutext.dart';
+import 'package:glambooker_admin/utils/colors.dart';
 
 class SearchServices extends StatelessWidget {
   SearchServices({super.key});

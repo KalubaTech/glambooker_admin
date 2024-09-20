@@ -31,7 +31,6 @@ class _PagesAnchorState extends State<PagesAnchor> {
         children: [
           Dashboard(),
           SearchServices(),
-          Bookings(),
           Profile(),
         ],
       ),
@@ -43,7 +42,6 @@ class _PagesAnchorState extends State<PagesAnchor> {
         icons: [
           FluidNavBarIcon(icon: Icons.home, selectedForegroundColor: Colors.white),
           FluidNavBarIcon(icon: Icons.search, selectedForegroundColor: Colors.white),
-          FluidNavBarIcon(icon: Icons.shopping_bag, selectedForegroundColor: Colors.white),
           FluidNavBarIcon(icon: Icons.person, selectedForegroundColor:  Colors.white),
         ],
         onChange: (int index) {

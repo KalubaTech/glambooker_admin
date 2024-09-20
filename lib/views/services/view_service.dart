@@ -2,12 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:draggable_home/draggable_home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:glambooker/controllers/bookings_controller.dart';
-import 'package:glambooker/controllers/salon_controller.dart';
-import 'package:glambooker/controllers/services_controller.dart';
-import 'package:glambooker/customs/kalubtn.dart';
-import 'package:glambooker/utils/colors.dart';
-import 'package:glambooker/views/payment/checkout.dart';
+import 'package:glambooker_admin/controllers/bookings_controller.dart';
+import 'package:glambooker_admin/controllers/salon_controller.dart';
+import 'package:glambooker_admin/controllers/services_controller.dart';
+import 'package:glambooker_admin/customs/kalubtn.dart';
+import 'package:glambooker_admin/utils/colors.dart';
+import 'package:glambooker_admin/views/payment/checkout.dart';
 
 import '../../models/service_model.dart';
 
@@ -24,109 +24,16 @@ class ViewService extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DraggableHome(
-      bottomSheet: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        width: double.infinity,
-        child: GetBuilder<BookingsController>(
-          builder: (bookingsController) {
-            return bookingsController.bookings.value.where((b)=>b.service==serviceModel).isNotEmpty?
-            Container():
-            Kalubtn(
-                height: 50,
-                borderRadius: 40,
-                label: '+ BOOK NOW',
-                labelStyle: TextStyle(fontSize: 12, color: Colors.white),
-                onclick: (){
-                  Get.bottomSheet(
-                    Container(
-                      width: double.infinity,
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 8,
-                            width: 60,
-                            decoration: BoxDecoration(
-                              color: Karas.background,
-                              borderRadius: BorderRadius.circular(20)
-                            ),
-                          ),
-                          Expanded(
-                              child: Container(
-                                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                                decoration: BoxDecoration(
-                                  color: Karas.background,
-                                  borderRadius: BorderRadius.circular(30)
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                                      child: Text('Choose appointment date', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Karas.primary),),
-                                    ),
-                                    Expanded(
-                                        child: Container(
-                                          child: CalendarDatePicker(
-                                              initialDate: DateTime.now(),
-                                              firstDate: DateTime.now(),
-                                              lastDate: DateTime.now().add(Duration(days: 365*10)),
-                                              onDateChanged: (data){
-                                                dateTime = data;
-                                              }
-                                          ),
-                                        )
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        children: [
-                                          Kalubtn(
-                                              width: 60,
-                                              height: 40,
-                                              borderRadius: 40,
-                                              label: 'OK',
-                                              onclick: (){
-                                                Get.to(()=>Checkout(service: serviceModel, dateTime: dateTime), transition: Transition.fadeIn);
-                                              }
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              )
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                }
-            );
-          }
-        ),
-      ),
         title: Container(),
-        leading: IconButton(
-          style: ButtonStyle(
-            backgroundColor: WidgetStateProperty.all(Karas.background)
-          ),
-          icon:Icon(Icons.arrow_back_sharp, color: Karas.primary,),
-          onPressed: (){
-            Get.back();
-          },
-        ),
         actions: [
-          Obx(
-            ()=>IconButton(
-              style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(Karas.background)
-              ),
-              icon:Icon(!_isFavorite.value?Icons.favorite_border:Icons.favorite, color: Colors.red,),
-              onPressed: (){
-                _isFavorite.value=!_isFavorite.value;
-              },
-            ),
+          PopupMenuButton(
+            color: Karas.background,
+              itemBuilder: (c){
+                return [
+                  PopupMenuItem(child: Text('Edit')),
+                  PopupMenuItem(child: Text('Delete')),
+                ];
+              }
           ),
           SizedBox(width: 4,)
         ],

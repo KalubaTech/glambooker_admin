@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:glambooker/controllers/bookings_controller.dart';
-import 'package:glambooker/customs/booking_item.dart';
-import 'package:glambooker/models/booking_model.dart';
-import 'package:glambooker/utils/colors.dart';
+import 'package:glambooker_admin/controllers/bookings_controller.dart';
+import 'package:glambooker_admin/customs/booking_item.dart';
+import 'package:glambooker_admin/models/booking_model.dart';
+import 'package:glambooker_admin/utils/colors.dart';
 import 'package:get/get.dart';
 
 class Bookings extends StatelessWidget {
@@ -14,7 +14,7 @@ class Bookings extends StatelessWidget {
       backgroundColor: Karas.background,
       appBar: AppBar(
         backgroundColor: Karas.background,
-        title: Text('My Bookings'),
+        title: Text('Bookings'),
       ),
       body: GetBuilder<BookingsController>(
         builder: (bookingController) {
@@ -33,7 +33,7 @@ class Bookings extends StatelessWidget {
                 children: [
                   Icon(Icons.warning, size: 40, color: Colors.orange,),
                   SizedBox(height: 20,),
-                  Text('No bookings!')
+                  Text('No bookings found!')
                 ],
               ),
             ),

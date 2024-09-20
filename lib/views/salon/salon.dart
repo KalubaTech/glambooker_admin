@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:glambooker/controllers/salon_controller.dart';
-import 'package:glambooker/controllers/services_controller.dart';
-import 'package:glambooker/models/salon_model.dart';
-import 'package:glambooker/models/service_model.dart';
-import 'package:glambooker/utils/colors.dart';
+import 'package:glambooker_admin/controllers/salon_controller.dart';
+import 'package:glambooker_admin/controllers/services_controller.dart';
+import 'package:glambooker_admin/models/salon_model.dart';
+import 'package:glambooker_admin/models/service_model.dart';
+import 'package:glambooker_admin/utils/colors.dart';
 
 class Salon extends StatelessWidget {
   Salon({super.key});

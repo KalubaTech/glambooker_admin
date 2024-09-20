@@ -3,9 +3,16 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:glambooker_admin/controllers/services_controller.dart';
 import 'package:glambooker_admin/customs/payment_details_container.dart';
+import 'package:get/get.dart';
+import 'package:glambooker_admin/helpers/data_prefetch.dart';
 
 class Methods{
+
+  DataPrefetch _dataPrefetch = DataPrefetch();
+
+  ServicesController _servicesController = Get.find();
 
   Future<String> uploadImage(_image) async {
     if (_image == null) return '';
@@ -68,4 +75,21 @@ class Methods{
 
     _fs.collection('sms_pusher').add(data);
   }
+
+  addService(_image,title,description,price)async{
+    String image = await uploadImage(_image);
+
+    var data = {
+      "image":image,
+      "title":title,
+      "description":description,
+      "price":price,
+      "datetime":"${DateTime.now()}"
+    };
+
+    await _fs.collection('services').add(data);
+
+    _dataPrefetch.fetchAllServices();
+  }
+
 }

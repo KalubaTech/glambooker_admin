@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glambooker_admin/utils/colors.dart';
 import 'package:glambooker_admin/views/services/view_service.dart';
-
+import 'package:shimmer/shimmer.dart';
 import '../models/service_model.dart';
 
 class ServiceHomeContainer extends StatelessWidget {
@@ -34,6 +34,15 @@ class ServiceHomeContainer extends StatelessWidget {
                   height: double.infinity,
                   fit: BoxFit.cover,
                   imageUrl: serviceModel.imageUrl,
+                  placeholder: (x,c)=>SizedBox(
+                    width: 200.0,
+                    height: 100.0,
+                    child: Shimmer.fromColors(
+                      baseColor: Colors.grey,
+                      highlightColor: Colors.black45,
+                      child: Container(),
+                    ),
+                  ),
                   errorWidget: (c,e,i)=>Image.asset(serviceModel.imageUrl, width: double.infinity, height: double.infinity,fit: BoxFit.cover,),
                 ),
               ),

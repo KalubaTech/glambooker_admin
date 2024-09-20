@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:glambooker/controllers/bookings_controller.dart';
-import 'package:glambooker/customs/kalubtn.dart';
-import 'package:glambooker/helpers/methods.dart';
-import 'package:glambooker/models/booking_model.dart';
-import 'package:glambooker/statics/dummy_data.dart';
-import 'package:glambooker/utils/colors.dart';
+import 'package:glambooker_admin/controllers/bookings_controller.dart';
+import 'package:glambooker_admin/customs/kalubtn.dart';
+import 'package:glambooker_admin/helpers/methods.dart';
+import 'package:glambooker_admin/models/booking_model.dart';
+import 'package:glambooker_admin/statics/dummy_data.dart';
+import 'package:glambooker_admin/utils/colors.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 

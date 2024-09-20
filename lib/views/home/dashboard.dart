@@ -11,8 +11,11 @@ import 'package:glambooker_admin/helpers/auth_service.dart';
 import 'package:glambooker_admin/models/service_model.dart';
 import 'package:glambooker_admin/utils/colors.dart';
 import 'package:glambooker_admin/views/salon/salon.dart';
+import 'package:glambooker_admin/views/services/all_services.dart';
 import 'package:glambooker_admin/views/services/bookings.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
+import '../clients/clients.dart';
 import '../user/profile.dart';
 
 
@@ -122,7 +125,7 @@ class Dashboard extends StatelessWidget {
                         child: Image.asset('assets/menu_icon.png', width: 24,),
                       ),
                       CircleAvatar(
-                        backgroundImage: AssetImage('assets/avatar.webp'),
+                        child: Icon(Icons.notifications),
                       )
                     ],
                   ),
@@ -134,10 +137,10 @@ class Dashboard extends StatelessWidget {
                 SizedBox(height: 10,),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Text('Find Best Services', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Karas.primary),),
+                  child: Text('GLAMBOOKER CMS', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Karas.primary),),
                 ),
                 SizedBox(height: 10,),
-                Container(
+               /* Container(
                   padding: EdgeInsets.symmetric(horizontal: 14),
                   child: Row(
                     children: [
@@ -164,12 +167,12 @@ class Dashboard extends StatelessWidget {
                       )
                     ],
                   ),
-                )
+                )*/
               ],
             ),
           ),
         ),
-        headerExpandedHeight: 0.28,
+        headerExpandedHeight: 0.18,
         body: [
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
@@ -177,7 +180,7 @@ class Dashboard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Suggested', style: TextStyle(fontSize: 20, color: Karas.primary),),
+                Text('Content', style: TextStyle(fontSize: 20, color: Karas.primary),),
               ],
             ),
           ),
@@ -191,18 +194,68 @@ class Dashboard extends StatelessWidget {
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               children: [
-                ...
-                    _servicesController.services.map((service)=>
-                        ServiceHomeContainer(
-                      serviceModel: ServiceModel(
-                          uid: '',
-                          title: '${service.title}',
-                          description: '${service.description}',
-                          imageUrl: '${service.imageUrl}',
-                          price: service.price
-                      ),
-                    )
-                    )
+                InkWell(
+                  onTap: (){
+                    Get.to(()=>AllServices(), transition: Transition.fadeIn);
+                  },
+                  child: Card(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        SizedBox(height: 10,),
+                        Icon(FeatherIcons.shoppingCart, size: 60,color: Karas.primary,),
+                        Text('SERVICES', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                        SizedBox(height: 10,),
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: (){
+                    Get.to(()=>Bookings(), transition: Transition.fadeIn);
+                  },
+                  child: Card(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        SizedBox(height: 10,),
+                        Icon(FeatherIcons.bookmark, size: 60,color: Karas.primary,),
+                        Text('BOOKINGS', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                        SizedBox(height: 10,),
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: (){
+                    Get.to(()=>Clients(), transition: Transition.fadeIn);
+                  },
+                  child: Card(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        SizedBox(height: 10,),
+                        Icon(FeatherIcons.users, size: 60,color: Karas.primary,),
+                        Text('CUSTOMERS', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                        SizedBox(height: 10,),
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: (){},
+                  child: Card(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        SizedBox(height: 10,),
+                        Icon(FeatherIcons.settings, size: 60,color: Karas.primary,),
+                        Text('SETTINGS', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                        SizedBox(height: 10,),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

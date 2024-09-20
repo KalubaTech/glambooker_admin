@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:glambooker/controllers/client_controller.dart';
-import 'package:glambooker/utils/colors.dart';
+import 'package:glambooker_admin/controllers/client_controller.dart';
+import 'package:glambooker_admin/utils/colors.dart';
 
 import '../../models/client_model.dart';
 
