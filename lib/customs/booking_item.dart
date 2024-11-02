@@ -76,12 +76,21 @@ class BookingItem extends StatelessWidget {
             SizedBox(height: 10,),
             Container(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Client'),
+                  Text('Client:', style: TextStyle(fontWeight: FontWeight.bold),),
                   ...
                   _clientController.clients.where((e){
                     return e.uid == booking.client;
-                  }).map((client)=>Text('${client.name}')).toList()
+                  }).map((client)=>
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('${client.name}'.toUpperCase()),
+                          Text('${client.phone}'),
+                        ],
+                      )
+                  ).toList()
                 ],
               ),
             )

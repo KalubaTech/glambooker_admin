@@ -7,6 +7,7 @@ import 'package:glambooker_admin/controllers/services_controller.dart';
 import 'package:glambooker_admin/customs/kalubtn.dart';
 import 'package:glambooker_admin/customs/service_home_container.dart';
 import 'package:glambooker_admin/customs/sidemenu_item.dart';
+import 'package:glambooker_admin/helpers/data_prefetch.dart';
 import 'package:glambooker_admin/models/service_model.dart';
 import 'package:glambooker_admin/utils/colors.dart';
 import 'package:glambooker_admin/views/salon/salon.dart';
@@ -17,16 +18,28 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import '../clients/clients.dart';
 
 
-class Dashboard extends StatelessWidget {
+class Dashboard extends StatefulWidget {
   Dashboard({super.key});
 
+  @override
+  State<Dashboard> createState() => _DashboardState();
+}
+
+class _DashboardState extends State<Dashboard> {
   GlobalKey<ScaffoldState>_sk = GlobalKey();
-
-
 
   ClientController _clientController = Get.find();
 
   ServicesController _servicesController = Get.find();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    DataPrefetch().fetchAllServices();
+    DataPrefetch().fetchClients();
+    DataPrefetch().fetchBookings();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -52,15 +52,16 @@ class DataPrefetch {
 
      for(var doc in bookingData.docs){
 
-       ServiceModel service = _servicesController.services.where((s)=>s.uid==doc.get('service')).first;
+
+       List<ServiceModel> service = _servicesController.services.where((s)=>s.uid==doc.get('service')).toList().isNotEmpty?_servicesController.services.where((s)=>s.uid==doc.get('service')).toList():[];
 
        BookingModel booking = BookingModel(
            bookingId: doc.id,
-           service: [service],
+           service: [service.first],
            isPaid: doc.get('isPaid'),
            status: doc.get('status'),
-           dateTime: doc.get('dateTime'),
-           dateBooked: doc.get('dateBooked'), 
+           dateTime: doc.get('datetime').toString(),
+           dateBooked: doc.get('dateBooked').toString(),
            client: doc.get('clientID')
        );
 
