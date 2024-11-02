@@ -6,6 +6,7 @@ import 'package:glambooker_admin/controllers/bookings_controller.dart';
 import 'package:glambooker_admin/controllers/salon_controller.dart';
 import 'package:glambooker_admin/controllers/services_controller.dart';
 import 'package:glambooker_admin/customs/kalubtn.dart';
+import 'package:glambooker_admin/helpers/methods.dart';
 import 'package:glambooker_admin/utils/colors.dart';
 import 'package:glambooker_admin/views/payment/checkout.dart';
 
@@ -31,7 +32,14 @@ class ViewService extends StatelessWidget {
               itemBuilder: (c){
                 return [
                   PopupMenuItem(child: Text('Edit')),
-                  PopupMenuItem(child: Text('Delete')),
+                  PopupMenuItem(
+                      child: Text('Delete'),
+                      onTap: ()async{
+                          await Methods().deleteService(serviceModel);
+                          Get.back();
+
+                      },
+                  ),
                 ];
               }
           ),

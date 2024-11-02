@@ -7,6 +7,7 @@ import 'package:glambooker_admin/controllers/services_controller.dart';
 import 'package:glambooker_admin/customs/payment_details_container.dart';
 import 'package:get/get.dart';
 import 'package:glambooker_admin/helpers/data_prefetch.dart';
+import 'package:glambooker_admin/models/service_model.dart';
 
 class Methods{
 
@@ -90,6 +91,12 @@ class Methods{
     await _fs.collection('services').add(data);
 
     _dataPrefetch.fetchAllServices();
+  }
+
+  deleteService(ServiceModel service)async{
+    await _fs.collection('services').doc(service.uid).delete();
+    _servicesController.services.value.removeWhere((serv)=>serv.uid==service.uid);
+    _servicesController.update();
   }
 
 }
