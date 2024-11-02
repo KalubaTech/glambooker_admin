@@ -54,12 +54,13 @@ class DummyData{
   }
   static var myBookings =  [
     BookingModel(
+      client: '',
         bookingId: '2',
         service: [],
         isPaid: false,
         status: 'pending',
-        dateTime: DateTime.now(),
-        dateBooked: DateTime.now(),
+        dateTime: DateTime.now().toString(),
+        dateBooked: DateTime.now().toString(),
     )
   ];
 }

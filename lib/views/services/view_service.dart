@@ -8,7 +8,6 @@ import 'package:glambooker_admin/controllers/services_controller.dart';
 import 'package:glambooker_admin/customs/kalubtn.dart';
 import 'package:glambooker_admin/helpers/methods.dart';
 import 'package:glambooker_admin/utils/colors.dart';
-import 'package:glambooker_admin/views/payment/checkout.dart';
 
 import '../../models/service_model.dart';
 

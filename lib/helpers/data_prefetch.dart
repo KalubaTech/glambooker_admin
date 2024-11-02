@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 import 'package:glambooker_admin/controllers/bookings_controller.dart';
+import 'package:glambooker_admin/controllers/client_controller.dart';
 import 'package:glambooker_admin/controllers/salon_controller.dart';
 import 'package:glambooker_admin/controllers/services_controller.dart';
 import 'package:glambooker_admin/models/booking_model.dart';
+import 'package:glambooker_admin/models/client_model.dart';
 import 'package:glambooker_admin/statics/dummy_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -12,6 +14,7 @@ class DataPrefetch {
   ServicesController _servicesController = Get.find();
   SalonController _salonController = Get.find();
   BookingsController _bookingsController = Get.find();
+  ClientController _clientController = Get.find();
 
   FirebaseFirestore _fs = FirebaseFirestore.instance;
 
@@ -57,7 +60,8 @@ class DataPrefetch {
            isPaid: doc.get('isPaid'),
            status: doc.get('status'),
            dateTime: doc.get('dateTime'),
-           dateBooked: doc.get('dateBooked')
+           dateBooked: doc.get('dateBooked'), 
+           client: doc.get('clientID')
        );
 
        bookings.add(booking);
@@ -66,6 +70,26 @@ class DataPrefetch {
     _bookingsController.bookings.value = bookings;
 
      _bookingsController.update();
+  }
+  
+  void fetchClients()async{
+    List<ClientModel> clients = [];
+    var clientsData = await _fs.collection('client').get();
+    
+    for(var clientdoc in clientsData.docs){
+      ClientModel client = ClientModel(
+          uid: clientdoc.id, 
+          email: clientdoc.get('email'),
+          name: clientdoc.get('displayName'),
+          phone: clientdoc.get('phone'),
+          picture: ''
+      );
+      
+      clients.add(client);
+    }
+    
+    _clientController.clients.value = clients;
+    _clientController.update();
   }
 
 }

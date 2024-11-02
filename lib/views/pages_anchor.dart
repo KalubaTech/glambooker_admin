@@ -4,7 +4,6 @@ import 'package:glambooker_admin/utils/colors.dart';
 import 'package:glambooker_admin/views/home/dashboard.dart';
 import 'package:glambooker_admin/views/services/bookings.dart';
 import 'package:glambooker_admin/views/services/search_services.dart';
-import 'package:glambooker_admin/views/user/profile.dart';
 
 class PagesAnchor extends StatefulWidget {
   const PagesAnchor({super.key});
@@ -31,7 +30,6 @@ class _PagesAnchorState extends State<PagesAnchor> {
         children: [
           Dashboard(),
           SearchServices(),
-          Profile(),
         ],
       ),
       extendBody: true,

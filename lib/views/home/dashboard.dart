@@ -7,7 +7,6 @@ import 'package:glambooker_admin/controllers/services_controller.dart';
 import 'package:glambooker_admin/customs/kalubtn.dart';
 import 'package:glambooker_admin/customs/service_home_container.dart';
 import 'package:glambooker_admin/customs/sidemenu_item.dart';
-import 'package:glambooker_admin/helpers/auth_service.dart';
 import 'package:glambooker_admin/models/service_model.dart';
 import 'package:glambooker_admin/utils/colors.dart';
 import 'package:glambooker_admin/views/salon/salon.dart';
@@ -16,7 +15,6 @@ import 'package:glambooker_admin/views/services/bookings.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
 import '../clients/clients.dart';
-import '../user/profile.dart';
 
 
 class Dashboard extends StatelessWidget {
@@ -24,7 +22,7 @@ class Dashboard extends StatelessWidget {
 
   GlobalKey<ScaffoldState>_sk = GlobalKey();
 
-  AuthService _authService = AuthService();
+
 
   ClientController _clientController = Get.find();
 
@@ -48,10 +46,7 @@ class Dashboard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-                child: Text('${_clientController.client.value.name}', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Karas.primary),),
-              ),
+
               Expanded(
                   child: Container(
                     child: ListView(
@@ -72,11 +67,7 @@ class Dashboard extends StatelessWidget {
                             );
                           }
                         ),
-                        SidemenuItem(
-                            title: 'Profile',
-                            icon: Icons.person,
-                            onclick: ()=>Get.to(()=>Profile(), transition: Transition.fadeIn),
-                        ),
+
                       ],
                     ),
                   )
@@ -89,7 +80,7 @@ class Dashboard extends StatelessWidget {
                     width: 100,
                     label: 'Log out',
                     onclick: (){
-                      _authService.signOut();
+
                     }
                 ),
               ),

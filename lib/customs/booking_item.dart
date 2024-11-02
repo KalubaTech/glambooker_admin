@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glambooker_admin/controllers/bookings_controller.dart';
+import 'package:glambooker_admin/controllers/client_controller.dart';
 import 'package:glambooker_admin/customs/kalubtn.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import '../models/booking_model.dart';
 
 class BookingItem extends StatelessWidget {
@@ -10,6 +11,7 @@ class BookingItem extends StatelessWidget {
   BookingItem({required this.booking});
 
   BookingsController _bookingsController = Get.find();
+  ClientController _clientController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class BookingItem extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.all(8),
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.white, width: 1),
+          border: Border.all(color: booking.status=='pending'?Colors.blue:Colors.white, width: 1),
           borderRadius: BorderRadius.circular(10)
         ),
         padding: EdgeInsets.all(20),
@@ -43,7 +45,7 @@ class BookingItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('Booking ID: ${booking.bookingId}', style: TextStyle(fontWeight: FontWeight.bold),),
-                Text('${booking.status.capitalize}', style: TextStyle(fontWeight: FontWeight.w200),),
+
               ],
             ),
             SizedBox(height: 10,),
@@ -52,7 +54,12 @@ class BookingItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  child: Image.asset(booking.service.first.imageUrl, width: 100, height:90,fit: BoxFit.cover,),
+                  child: CachedNetworkImage(
+                    imageUrl:booking.service.first.imageUrl,
+                    width: 100,
+                    height:90,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 SizedBox(width: 10,),
                 Column(
@@ -66,6 +73,18 @@ class BookingItem extends StatelessWidget {
                 ),
               ],
             ),
+            SizedBox(height: 10,),
+            Container(
+              child: Column(
+                children: [
+                  Text('Client'),
+                  ...
+                  _clientController.clients.where((e){
+                    return e.uid == booking.client;
+                  }).map((client)=>Text('${client.name}')).toList()
+                ],
+              ),
+            )
           ],
         ),
       ),
